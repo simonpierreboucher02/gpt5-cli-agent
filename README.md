@@ -2,78 +2,92 @@
 
 **👨‍💻 Author: Simon-Pierre Boucher**  
 
-<div align="center">
+<div align="center">  
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?logo=python&logoColor=white)  
 ![OpenAI](https://img.shields.io/badge/OpenAI-API-green?logo=openai&logoColor=white)  
 ![License](https://img.shields.io/badge/License-MIT-yellow)  
 ![Version](https://img.shields.io/badge/Version-1.0.0-purple)  
 
-**A professional, unified command-line interface for all GPT-5 variants**  
-*Legendary UX with enhanced CLI, persistence, and advanced reasoning support*  
+**A professional, unified CLI agent for OpenAI GPT-5 models**  
+*Supports GPT-5, GPT-5 Mini, and GPT-5 Nano with advanced reasoning, exports, and modern CLI*  
 
-[📦 Features](#-key-features) • [⚙️ Installation](#-installation) • [🚀 Quick Start](#-quick-start) • [💻 Commands](#-interactive-commands) • [📁 File Inclusion](#-file-inclusion) • [📊 Model Comparison](#-model-comparison) • [🗂️ Project Structure](#-project-structure) • [🔐 Security](#-security) • [🎨 UX](#-user-experience) • [🐛 Troubleshooting](#-troubleshooting) • [📝 License](#-license) • [🤝 Contributing](#-contributing)
+[✨ Features](#-features) • [⚙️ Installation](#-installation) • [🚀 Quick Start](#-quick-start) • [💻 Commands](#-interactive-commands) • [📁 File Inclusion](#-file-inclusion) • [📊 Model Comparison](#-model-comparison) • [🏗️ Architecture](#-project-structure) • [🔒 Security](#-security) • [🐛 Troubleshooting](#-troubleshooting) • [📄 License](#-license) • [🤝 Contributing](#-contributing)  
 
 </div>  
 
 ---
 
-## 🚀 Key Features  
+## ✨ Features  
 
-### 🔄 Multi-Model Support  
-- 🔹 **GPT-5** → Advanced reasoning (3–12 min timeouts)  
-- 🔹 **GPT-5 Mini** → Balanced efficiency/performance (1.5–6 min timeouts)  
-- 🔹 **GPT-5 Nano** → Speed-optimized lightweight model (1–4 min timeouts)  
-
-### 🛠️ Professional Features  
-- ✨ Enhanced CLI with colors and intuitive design  
-- 💬 Persistent conversation history with automatic backups  
-- 🌊 Streaming & non-streaming support  
-- 📁 File inclusion via `{filename}` syntax  
-- ⚙️ Agent-based configuration management  
-- 📊 Detailed statistics & analytics  
-- 📤 Multi-format exports (JSON, TXT, MD, HTML)  
-- 🔐 Secure API key management  
-- 🔍 Conversation search & history navigation  
-- 🎯 Adaptive timeouts per reasoning effort  
+- 🔹 **All GPT-5 Models**: GPT-5, GPT-5 Mini, GPT-5 Nano  
+- 🎨 **Enhanced CLI**: Beautiful colored output, banners, intuitive commands  
+- 💬 **Persistent History**: Auto backup & restore  
+- 📁 **File Inclusion**: `{filename}` syntax  
+- 📤 **Multi-format Export**: JSON, TXT, Markdown, HTML  
+- ⚙️ **Advanced Config**: Parameters, streaming, system prompts  
+- 📊 **Statistics & Analytics**  
+- 🛡️ **Error Handling & Logging**  
 
 ---
 
 ## ⚙️ Installation  
 
-1. 📥 Clone or download the repository  
-2. ⚙️ Install dependencies:  
-   ```bash
-   pip install -r requirements.txt
-   ```  
-3. 🔑 Set your API key:  
-   ```bash
-   export OPENAI_API_KEY="your-api-key-here"
-   ```  
+Clone the repository:  
+```bash
+git clone https://github.com/simonpierreboucher02/gpt5-cli-agent.git
+cd gpt5-cli-agent
+```
+
+Create and activate a virtual environment (recommended):  
+```bash
+python -m venv venv
+source venv/bin/activate
+```
+
+Install dependencies:  
+```bash
+pip install -r requirements.txt
+```
+
+Set your OpenAI API key:  
+```bash
+export OPENAI_API_KEY=your_api_key_here
+```  
 
 ---
 
 ## 🚀 Quick Start  
 
-- ▶️ GPT-5:  
-  ```bash
-  python main.py --agent-id my-agent --model gpt-5
-  ```  
+### Start GPT-5  
+```bash
+python main.py --agent-id my-agent --model gpt-5
+```  
 
-- ⚡ GPT-5 Mini:  
-  ```bash
-  python main.py --agent-id my-agent --model gpt-5-mini
-  ```  
+### Use GPT-5 Mini  
+```bash
+python main.py --agent-id my-agent --model gpt-5-mini
+```  
 
-- 🚀 GPT-5 Nano:  
-  ```bash
-  python main.py --agent-id my-agent --model gpt-5-nano
-  ```  
+### Use GPT-5 Nano  
+```bash
+python main.py --agent-id my-agent --model gpt-5-nano
+```  
 
-- 📋 List agents:  
-  ```bash
-  python main.py --list
-  ```  
+### List all agents  
+```bash
+python main.py --list
+```  
+
+### Configure an agent interactively  
+```bash
+python main.py --agent-id my-agent --config
+```  
+
+### Export conversation  
+```bash
+python main.py --agent-id my-agent --export html
+```  
 
 ---
 
@@ -84,10 +98,10 @@
 | `/help` | Show all available commands |
 | `/history [n]` | Show last n messages |
 | `/search <term>` | Search conversation history |
-| `/stats` | Show conversation statistics |
+| `/stats` | Show statistics |
 | `/config` | Show current configuration |
-| `/export <format>` | Export conversation |
-| `/clear` | Clear conversation history |
+| `/export <format>` | Export conversation (json/txt/md/html) |
+| `/clear` | Clear history |
 | `/files` | List available files |
 | `/info` | Show agent info |
 | `/quit` | Exit chat |  
@@ -96,42 +110,35 @@
 
 ## 📁 File Inclusion  
 
-Use `{filename}` to include content:  
-
 ```
-Can you review this code? {main.py}  
-Please analyze configs: {config.yaml}, {settings.json}
+Review this code: {main.py}  
+Check config: {config.yaml}, {settings.json}  
 ```  
 
-Supported file types:  
-- Programming → `.py`, `.js`, `.cpp`, `.rs` …  
-- Config → `.json`, `.yaml`, `.toml` …  
-- Docs → `.md`, `.txt` …  
-- Web → `.html`, `.css` …  
+Supported file types: Python, JavaScript, TypeScript, C/C++, Go, Rust, HTML, CSS, JSON, YAML, Markdown, etc.  
 
 ---
 
 ## 📊 Model Comparison  
 
-| ⚙️ Model | 📌 Best Use Case | ⏱️ Timeout | 🚀 Performance |
-|----------|-----------------|------------|----------------|
+| Model | Best Use Case | Timeout | Performance |
+|-------|---------------|---------|-------------|
 | **GPT-5** | Complex reasoning, analysis | 3–12 min | 🌟🌟🌟🌟🌟 |
 | **GPT-5 Mini** | Balanced workloads | 1.5–6 min | 🌟🌟🌟🌟 |
 | **GPT-5 Nano** | Quick/simple tasks | 1–4 min | 🌟🌟🌟 |  
 
 ---
 
-## 🗂️ Project Structure  
+## 🏗️ Project Structure  
 
 ```
-gpt5/
+gpt5-cli-agent/
 ├── main.py
 ├── config.py
 ├── agent.py
 ├── utils.py
 ├── export.py
 ├── requirements.txt
-├── README.md
 └── agents/
     └── {agent-id}/
         ├── config.yaml
@@ -144,43 +151,33 @@ gpt5/
 
 ---
 
-## 🔐 Security  
+## 🔒 Security  
 
-- 🔒 Secure storage of API keys  
+- 🔑 Secure API key management  
 - 🚫 No sensitive data in logs/exports  
-- ✅ Auto `.gitignore` handling  
-- 🔑 Multi-model API key support  
-
----
-
-## 🎨 User Experience  
-
-- 🖼️ ASCII banners & colorful UI  
-- ✅ Smart input validation  
-- 📊 Rich statistics & export styling  
-- ⏳ Progress indicators  
-- 🔎 Intuitive navigation & help  
+- ✅ `.gitignore` automatically excludes secrets  
+- 🔐 Multi-model key support  
 
 ---
 
 ## 🐛 Troubleshooting  
 
-- ❌ **API Key Error** → Check validity & credits  
-- ⏱️ **Timeout** → Lower reasoning effort  
-- 📂 **File not found** → Use `/files`  
-- 🔐 **Permission denied** → Check file rights  
+- ❌ Import errors → `pip install -r requirements.txt`  
+- 🔑 API key issues → `export OPENAI_API_KEY=...`  
+- ⏱️ Timeout issues → Adjust reasoning effort or temperature  
+- 📂 File not found → Use `/files` command  
 
 ---
 
-## 📝 License  
+## 📄 License  
 
-MIT License — for educational & professional use.  
+MIT License — professional & educational use.  
 
 ---
 
 ## 🤝 Contributing  
 
-Contributions welcome: bug reports, features, docs, code.  
+Contributions welcome!  
 
 ---
 
