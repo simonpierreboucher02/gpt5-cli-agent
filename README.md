@@ -1,189 +1,182 @@
-# OpenAI GPT-5 Unified Chat Agent
-**Author:** Simon-Pierre Boucher
+# 🌐 OpenAI GPT-5 Unified Chat Agent  
 
-A professional, unified command-line interface for all OpenAI GPT model variants with an enhanced user experience designed to be legendary.
+**👨‍💻 Author: Simon-Pierre Boucher**  
 
-## 🚀 Features
+✨ A **professional, unified command-line interface (CLI)** for **all OpenAI GPT model variants**, designed to deliver a **legendary user experience**.  
 
-### Multi-Model Support
-- **GPT-5** - Full-featured model with advanced reasoning capabilities (3-12 min timeouts)
-- **GPT-5 Mini** - Compact model balancing performance and efficiency (1.5-6 min timeouts)  
-- **GPT-5 Nano** - Lightweight model optimized for speed (1-4 min timeouts)
+---
 
-### Professional Features
-- ✨ **Enhanced CLI** with beautiful colored output and intuitive interface
-- 💬 **Persistent Conversation History** with rolling backups
-- 🌊 **Streaming & Non-streaming** response support
-- 📁 **File Inclusion** via `{filename}` syntax for programming files
-- ⚙️ **Advanced Configuration Management** per agent
-- 📊 **Comprehensive Statistics** and analytics
-- 📤 **Export Capabilities** (JSON, TXT, Markdown, HTML)
-- 🔐 **Secure API Key Management** with environment and file support
-- 🔍 **Conversation Search** and history navigation
-- 🎯 **Model-specific Timeouts** based on reasoning effort
+## 🚀 Key Features  
 
-## 📦 Installation
+### 🔄 Multi-Model Support  
+- 🔹 **GPT-5** → Advanced reasoning (3–12 min timeouts)  
+- 🔹 **GPT-5 Mini** → Balanced efficiency/performance (1.5–6 min timeouts)  
+- 🔹 **GPT-5 Nano** → Speed-optimized lightweight model (1–4 min timeouts)  
 
-1. Clone or download the project files
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+### 🛠️ Professional Features  
+- ✨ **Enhanced CLI** with colors and intuitive design  
+- 💬 **Persistent conversation history** with automatic backups  
+- 🌊 **Streaming & non-streaming** support  
+- 📁 **File inclusion** via `{filename}` syntax  
+- ⚙️ **Advanced agent-based configuration management**  
+- 📊 **Detailed statistics & analytics**  
+- 📤 **Export formats**: JSON, TXT, Markdown, HTML  
+- 🔐 **Secure API key management** with env & file support  
+- 🔍 **Conversation search** and history navigation  
+- 🎯 **Adaptive timeouts** based on reasoning effort  
 
-3. Set your OpenAI API key (one of the following):
-```bash
-# Environment variable (recommended)
-export OPENAI_API_KEY="your-api-key-here"
+---
 
-# Or the program will prompt you and save it securely
-```
+## 📦 Installation  
 
-## 🎯 Quick Start
+1. 📥 Clone or download the repository  
+2. ⚙️ Install dependencies:  
+   ```bash
+   pip install -r requirements.txt
+   ```  
+3. 🔑 Set your OpenAI API key:  
+   ```bash
+   export OPENAI_API_KEY="your-api-key-here"
+   ```  
+   *(or the program will prompt you and store it securely)*  
 
-### Start a chat session with GPT-5
-```bash
-python main.py --agent-id my-agent --model gpt-5
-```
+---
 
-### Use GPT-5 Mini for faster responses
-```bash
-python main.py --agent-id my-agent --model gpt-5-mini
-```
+## 🎯 Quick Start  
 
-### Use GPT-5 Nano for speed-optimized responses
-```bash
-python main.py --agent-id my-agent --model gpt-5-nano
-```
+- ▶️ Start GPT-5:  
+  ```bash
+  python main.py --agent-id my-agent --model gpt-5
+  ```  
+- ⚡ GPT-5 Mini (faster responses):  
+  ```bash
+  python main.py --agent-id my-agent --model gpt-5-mini
+  ```  
+- 🚀 GPT-5 Nano (optimized for speed):  
+  ```bash
+  python main.py --agent-id my-agent --model gpt-5-nano
+  ```  
+- 📋 List all agents:  
+  ```bash
+  python main.py --list
+  ```  
+- 🛠️ Configure an agent:  
+  ```bash
+  python main.py --agent-id my-agent --config
+  ```  
+- 🔍 View agent details:  
+  ```bash
+  python main.py --info my-agent
+  ```  
 
-### List all your agents
-```bash
-python main.py --list
-```
+---
 
-### Configure an agent interactively
-```bash
-python main.py --agent-id my-agent --config
-```
+## 💻 Interactive Commands  
 
-### View detailed agent information
-```bash
-python main.py --info my-agent
-```
+- `/help` → Show all commands  
+- `/history [n]` → Display last n messages  
+- `/search <term>` → Search conversation history  
+- `/stats` → Show conversation stats  
+- `/config` → View current configuration  
+- `/export <format>` → Export (json | txt | md | html)  
+- `/clear` → Clear history  
+- `/files` → List available files  
+- `/info` → Show agent info  
+- `/quit` → Exit session  
 
-### Export conversation
-```bash
-python main.py --agent-id my-agent --export html
-```
+---
 
-## 💻 Interactive Commands
+## 📁 File Inclusion  
 
-Once in a chat session, use these commands:
-
-- `/help` - Show all available commands
-- `/history [n]` - Show last n messages (default 5)
-- `/search <term>` - Search conversation history
-- `/stats` - Show conversation statistics
-- `/config` - Show current configuration
-- `/export <format>` - Export conversation (json|txt|md|html)
-- `/clear` - Clear conversation history
-- `/files` - List available files for inclusion
-- `/info` - Show agent information
-- `/quit` - Exit chat session
-
-## 📁 File Inclusion
-
-Include file contents in your messages using `{filename}` syntax:
+Easily include file contents inside messages:  
 
 ```
-Can you review this code? {main.py}
+Can you review this code? {main.py}  
 
-Please analyze these configs: {config.yaml} and {settings.json}
-```
+Please analyze these configs: {config.yaml}, {settings.json}
+```  
 
-### Supported File Types
-- Programming languages (.py, .js, .ts, .java, .c, .cpp, .go, .rs, etc.)
-- Configuration files (.yaml, .json, .toml, .ini, .env, etc.)
-- Documentation (.md, .rst, .txt, etc.)
-- Web files (.html, .css, .scss, etc.)
-- And many more...
+✅ Supported file types:  
+- Programming files (.py, .js, .ts, .java, .cpp, .rs, etc.)  
+- Config files (.yaml, .json, .toml, .env, etc.)  
+- Documentation (.md, .txt, .rst)  
+- Web files (.html, .css, .scss)  
+- …and more  
 
-## ⚙️ Configuration
+---
 
-Each agent maintains its own configuration including:
+## 📊 Model Comparison  
 
-- **Model**: GPT variant to use
-- **Temperature**: Response creativity (0.0-2.0)
-- **Reasoning Effort**: Low/Medium/High (affects timeout)
-- **Reasoning Summary**: Auto/Detailed/None
-- **System Prompt**: Custom instructions for the AI
-- **Streaming**: Enable/disable response streaming
-- **Max Output Tokens**: Limit response length
-- **History Size**: Maximum conversation history
+| ⚙️ Model       | 📌 Best Use Case            | ⏱️ Timeout | 🚀 Performance |
+|----------------|-----------------------------|------------|----------------|
+| **GPT-5**      | Complex reasoning & analysis | 3–12 min   | 🌟🌟🌟🌟🌟 |
+| **GPT-5 Mini** | Balanced workloads           | 1.5–6 min  | 🌟🌟🌟🌟 |
+| **GPT-5 Nano** | Quick/simple tasks           | 1–4 min    | 🌟🌟🌟 |  
 
-## 📊 Model Comparison
+---
 
-| Model | Best For | Reasoning Timeout | Performance |
-|-------|----------|------------------|-------------|
-| **GPT-5** | Complex reasoning, detailed analysis | 3-12 minutes | Highest quality |
-| **GPT-5 Mini** | Balanced use cases | 1.5-6 minutes | Good balance |
-| **GPT-5 Nano** | Quick responses, simple tasks | 1-4 minutes | Fastest |
-
-## 🗂️ Project Structure
+## 🗂️ Project Structure  
 
 ```
 gpt5/
-├── main.py           # Main unified CLI application
-├── config.py         # Configuration and model definitions
-├── agent.py          # Core chat agent implementation
+├── main.py           # Main CLI app
+├── config.py         # Config & model definitions
+├── agent.py          # Core agent logic
 ├── utils.py          # Utility functions
-├── export.py         # Conversation export functionality
+├── export.py         # Export functionality
 ├── requirements.txt  # Python dependencies
 ├── README.md         # This file
-└── agents/          # Agent data (created automatically)
+└── agents/           # Agent data
     └── {agent-id}/
-        ├── config.yaml      # Agent configuration
-        ├── history.json     # Conversation history
-        ├── secrets.json     # API keys (git-ignored)
-        ├── backups/         # History backups
-        ├── logs/           # Application logs
-        └── exports/        # Exported conversations
-```
+        ├── config.yaml
+        ├── history.json
+        ├── secrets.json
+        ├── backups/
+        ├── logs/
+        └── exports/
+```  
 
-## 🔐 Security
+---
 
-- API keys are stored securely and automatically added to `.gitignore`
-- Support for environment variables and secure file storage
-- Model-specific API key management
-- No sensitive data in logs or exports
+## 🔐 Security  
 
-## 🎨 User Experience Highlights
+- 🔒 Secure storage of API keys  
+- 🚫 No sensitive data in logs/exports  
+- ✅ Auto `.gitignore` handling for keys  
+- 🔑 Multi-model API key support  
 
-- **Beautiful ASCII banners** and colorful interface
-- **Smart input validation** with helpful error messages
-- **Progress indicators** for long reasoning operations
-- **Intuitive commands** with tab-completion style help
-- **Rich statistics** and conversation analytics
-- **Professional export formats** with modern styling
+---
 
-## 🐛 Troubleshooting
+## 🎨 User Experience  
 
-### Common Issues
+- 🖼️ Beautiful ASCII banners & colors  
+- ✅ Smart input validation  
+- 📊 Rich statistics & export formatting  
+- ⏳ Progress indicators for reasoning  
+- 🔎 Intuitive navigation & command help  
 
-1. **API Key Issues**: Ensure your OpenAI API key is valid and has sufficient credits
-2. **Timeout Errors**: Try reducing reasoning effort from high to medium or low
-3. **File Not Found**: Use `/files` command to see available files for inclusion
-4. **Permission Errors**: Ensure write permissions in the project directory
+---
 
-### Getting Help
+## 🐛 Troubleshooting  
 
-- Use the `/help` command in chat for available commands
-- Check the agent info with `--info` command
-- Review logs in `agents/{agent-id}/logs/`
+- ❌ **API Key Error** → Check validity & credits  
+- ⏱️ **Timeout** → Lower reasoning effort  
+- 📂 **File not found** → Use `/files` command  
+- 🔐 **Permission denied** → Check write access  
 
-## 📝 License
+---
 
-This project is provided as-is for educational and professional use.
+## 📝 License  
 
-## 🤝 Contributing
+📜 Provided as-is for educational and professional use.  
 
-This is a unified, professional implementation combining multiple OpenAI GPT agents with enhanced user experience. All French instructions have been converted to English for international accessibility.
+---
+
+## 🤝 Contributing  
+
+Contributions are welcome to make the agent even more **robust, aesthetic, and powerful**.  
+
+---
+
+**2025-08-29**  
+*Université Laval*  
