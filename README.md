@@ -1,4 +1,5 @@
 # OpenAI GPT-5 Unified Chat Agent
+**Author:** Simon-Pierre Boucher
 
 A professional, unified command-line interface for all OpenAI GPT model variants with an enhanced user experience designed to be legendary.
 
