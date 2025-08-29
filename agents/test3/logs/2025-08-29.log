@@ -1,0 +1,12 @@
+2025-08-29 01:58:50,615 - OpenAIGPTAgent_test3 - INFO - API key saved for user (length: 164)
+2025-08-29 01:58:50,615 - OpenAIGPTAgent_test3 - INFO - Initialized OpenAI GPT-5 Nano Chat Agent: test3 with model: gpt-5-nano
+2025-08-29 01:58:55,001 - OpenAIGPTAgent_test3 - INFO - Making API call to https://api.openai.com/v1/chat/completions
+2025-08-29 01:58:55,001 - OpenAIGPTAgent_test3 - INFO - Using timeout of 120s for GPT-5 Nano with reasoning effort: medium
+2025-08-29 01:58:55,001 - OpenAIGPTAgent_test3 - INFO - Making API request to GPT-5 Nano (attempt 1/3) with 120s timeout...
+2025-08-29 01:59:21,290 - OpenAIGPTAgent_test3 - INFO - API request successful
+2025-08-29 01:59:44,436 - OpenAIGPTAgent_test3 - INFO - Making API call to https://api.openai.com/v1/chat/completions
+2025-08-29 01:59:44,436 - OpenAIGPTAgent_test3 - INFO - Using timeout of 120s for GPT-5 Nano with reasoning effort: medium
+2025-08-29 01:59:44,436 - OpenAIGPTAgent_test3 - INFO - Making API request to GPT-5 Nano (attempt 1/3) with 120s timeout...
+2025-08-29 01:59:47,382 - OpenAIGPTAgent_test3 - INFO - API request successful
+2025-08-29 01:59:53,530 - OpenAIGPTAgent_test3 - INFO - Exported conversation to agents/test3/exports/conversation_20250829_015953.html
+2025-08-29 01:59:58,149 - OpenAIGPTAgent_test3 - INFO - Exported conversation to agents/test3/exports/conversation_20250829_015958.md

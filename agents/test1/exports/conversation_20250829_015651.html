@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenAI GPT-5 Conversation - test1</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #f1f5f9;
+            --text-color: #1e293b;
+            --border-color: #e2e8f0;
+            --user-bg: #3b82f6;
+            --assistant-bg: #10b981;
+            --code-bg: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 4xl;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+        
+        .stats {
+            background: var(--secondary-color);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 0.25rem;
+        }
+        
+        .messages {
+            padding: 2rem;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .message.user {
+            flex-direction: row-reverse;
+        }
+        
+        .message-avatar {
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+        }
+        
+        .message.user .message-avatar {
+            background: var(--user-bg);
+        }
+        
+        .message.assistant .message-avatar {
+            background: var(--assistant-bg);
+        }
+        
+        .message-content {
+            flex: 1;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .message.user .message-content {
+            background: #eff6ff;
+            border-color: var(--user-bg);
+        }
+        
+        .message.assistant .message-content {
+            background: #f0fdf4;
+            border-color: var(--assistant-bg);
+        }
+        
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .message-role {
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+        
+        .message-time {
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        
+        .message-text {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        
+        .code-block {
+            background: var(--code-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+        }
+        
+        .footer {
+            background: var(--secondary-color);
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .header {
+                padding: 1.5rem;
+            }
+            
+            .header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .header-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .messages {
+                padding: 1rem;
+            }
+            
+            .message-content {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🤖 OpenAI GPT-5 Chat Agent</h1>
+            <p>Conversation Export</p>
+            <div class="header-info">
+                <div><strong>Agent ID:</strong> test1</div>
+                <div><strong>Model:</strong> gpt-5</div>
+                <div><strong>Exported:</strong> 2025-08-29 01:56:51</div>
+                <div><strong>Temperature:</strong> 1.0</div>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">Total Messages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">User Messages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2</div>
+                    <div class="stat-label">Assistant Messages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4,966</div>
+                    <div class="stat-label">Total Characters</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">1,241</div>
+                    <div class="stat-label">Avg Message Length</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0:00:35</div>
+                    <div class="stat-label">Duration</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="messages">
+        <div class="message user">
+            <div class="message-avatar">U</div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-role">user</span>
+                    <span class="message-time">2025-08-29 01:56:10</span>
+                </div>
+                <div class="message-text">give me a python code for snake game</div>
+            </div>
+        </div>
+        <div class="message assistant">
+            <div class="message-avatar">AI</div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-role">assistant</span>
+                    <span class="message-time">2025-08-29 01:56:37</span>
+                </div>
+                <div class="message-text"># Snake Game in Python with Pygame
+# Requires: pip install pygame
+
+import pygame
+import random
+import sys
+
+# Grid and window settings
+CELL_SIZE = 20
+COLS, ROWS = 32, 24
+WIDTH, HEIGHT = COLS * CELL_SIZE, ROWS * CELL_SIZE
+
+# Colors
+BG = (30, 30, 30)
+SNAKE = (0, 200, 0)
+SNAKE_HEAD = (0, 255, 80)
+FOOD = (220, 50, 50)
+TEXT = (240, 240, 240)
+
+MOVE_EVENT = pygame.USEREVENT + 1
+START_DELAY_MS = 140
+MIN_DELAY_MS = 70
+SPEEDUP_PER_APPLE = 4  # lower = faster
+
+DIRS = {
+    pygame.K_UP: (0, -1),
+    pygame.K_w: (0, -1),
+    pygame.K_DOWN: (0, 1),
+    pygame.K_s: (0, 1),
+    pygame.K_LEFT: (-1, 0),
+    pygame.K_a: (-1, 0),
+    pygame.K_RIGHT: (1, 0),
+    pygame.K_d: (1, 0),
+}
+
+def is_opposite(a, b):
+    return a[0] == -b[0] and a[1] == -b[1]
+
+def place_food(snake):
+    snake_set = set(snake)
+    while True:
+        pos = (random.randint(0, COLS - 1), random.randint(0, ROWS - 1))
+        if pos not in snake_set:
+            return pos
+
+def draw_rect(surface, color, cell_pos):
+    x, y = cell_pos
+    rect = pygame.Rect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+    pygame.draw.rect(surface, color, rect)
+
+def reset_game():
+    mid = (COLS // 2, ROWS // 2)
+    snake = [mid, (mid[0] - 1, mid[1]), (mid[0] - 2, mid[1])]
+    direction = (1, 0)
+    food = place_food(snake)
+    score = 0
+    delay = START_DELAY_MS
+    return snake, direction, food, score, delay
+
+def main():
+    pygame.init()
+    screen = pygame.display.set_mode((WIDTH, HEIGHT))
+    pygame.display.set_caption(&quot;Snake&quot;)
+    clock = pygame.time.Clock()
+    font = pygame.font.SysFont(None, 28)
+    big_font = pygame.font.SysFont(None, 64)
+
+    snake, direction, food, score, delay = reset_game()
+    game_over = False
+
+    pygame.time.set_timer(MOVE_EVENT, delay)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key in DIRS and not game_over:
+                    new_dir = DIRS[event.key]
+                    # Prevent 180-degree turns if snake length &gt; 1
+                    if not is_opposite(new_dir, direction) or len(snake) == 1:
+                        direction = new_dir
+                elif game_over:
+                    if event.key in (pygame.K_r, pygame.K_RETURN, pygame.K_SPACE):
+                        snake, direction, food, score, delay = reset_game()
+                        game_over = False
+                        pygame.time.set_timer(MOVE_EVENT, delay)
+                    elif event.key in (pygame.K_q, pygame.K_ESCAPE):
+                        pygame.quit()
+                        sys.exit()
+                else:
+                    if event.key == pygame.K_ESCAPE:
+                        pygame.quit()
+                        sys.exit()
+
+            if event.type == MOVE_EVENT and not game_over:
+                # Compute new head
+                head_x, head_y = snake[0]
+                dx, dy = direction
+                new_head = (head_x + dx, head_y + dy)
+
+                # Check wall collision
+                if not (0 &lt;= new_head[0] &lt; COLS and 0 &lt;= new_head[1] &lt; ROWS):
+                    game_over = True
+                # Check self collision
+                elif new_head in snake:
+                    game_over = True
+                else:
+                    snake.insert(0, new_head)
+                    if new_head == food:
+                        score += 1
+                        food = place_food(snake)
+                        delay = max(MIN_DELAY_MS, delay - SPEEDUP_PER_APPLE)
+                        pygame.time.set_timer(MOVE_EVENT, delay)
+                    else:
+                        snake.pop()  # move forward
+
+        # Draw
+        screen.fill(BG)
+
+        # Food
+        draw_rect(screen, FOOD, food)
+
+        # Snake
+        if snake:
+            draw_rect(screen, SNAKE_HEAD, snake[0])
+        for seg in snake[1:]:
+            draw_rect(screen, SNAKE, seg)
+
+        # Score
+        score_surf = font.render(f&quot;Score: {score}&quot;, True, TEXT)
+        screen.blit(score_surf, (8, 6))
+
+        # Game over overlay
+        if game_over:
+            overlay = pygame.Surface((WIDTH, HEIGHT), pygame.SRCALPHA)
+            overlay.fill((0, 0, 0, 140))
+            screen.blit(overlay, (0, 0))
+
+            go_text = big_font.render(&quot;Game Over&quot;, True, TEXT)
+            prompt = font.render(&quot;Press R/Enter to restart, Q/Esc to quit&quot;, True, TEXT)
+            screen.blit(go_text, go_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 20)))
+            screen.blit(prompt, prompt.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 30)))
+
+        pygame.display.flip()
+        clock.tick(60)
+
+if __name__ == &quot;__main__&quot;:
+    main()</div>
+            </div>
+        </div>
+        <div class="message user">
+            <div class="message-avatar">U</div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-role">user</span>
+                    <span class="message-time">2025-08-29 01:56:41</span>
+                </div>
+                <div class="message-text">thanks</div>
+            </div>
+        </div>
+        <div class="message assistant">
+            <div class="message-avatar">AI</div>
+            <div class="message-content">
+                <div class="message-header">
+                    <span class="message-role">assistant</span>
+                    <span class="message-time">2025-08-29 01:56:45</span>
+                </div>
+                <div class="message-text">You&#x27;re welcome! If you want features added (wrap-around walls, high score, skins, etc.), just say the word. Tip: install Pygame with “pip install pygame” and run the file with “python snake.py”.</div>
+            </div>
+        </div>
+        </div>
+        
+        <div class="footer">
+            Generated by OpenAI GPT-5 Chat Agent • Agent ID: test1 • 2025-08-29 01:56:51
+        </div>
+    </div>
+</body>
+</html>

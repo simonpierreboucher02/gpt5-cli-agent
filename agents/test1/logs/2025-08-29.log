@@ -1,0 +1,12 @@
+2025-08-29 01:56:01,871 - OpenAIGPTAgent_test1 - INFO - API key saved for user (length: 164)
+2025-08-29 01:56:01,872 - OpenAIGPTAgent_test1 - INFO - Initialized OpenAI GPT-5 Chat Agent: test1 with model: gpt-5
+2025-08-29 01:56:10,379 - OpenAIGPTAgent_test1 - INFO - Making API call to https://api.openai.com/v1/chat/completions
+2025-08-29 01:56:10,379 - OpenAIGPTAgent_test1 - INFO - Using timeout of 360s for GPT-5 with reasoning effort: medium
+2025-08-29 01:56:10,379 - OpenAIGPTAgent_test1 - INFO - Making API request to GPT-5 (attempt 1/3) with 360s timeout...
+2025-08-29 01:56:29,439 - OpenAIGPTAgent_test1 - INFO - API request successful
+2025-08-29 01:56:41,210 - OpenAIGPTAgent_test1 - INFO - Making API call to https://api.openai.com/v1/chat/completions
+2025-08-29 01:56:41,210 - OpenAIGPTAgent_test1 - INFO - Using timeout of 360s for GPT-5 with reasoning effort: medium
+2025-08-29 01:56:41,210 - OpenAIGPTAgent_test1 - INFO - Making API request to GPT-5 (attempt 1/3) with 360s timeout...
+2025-08-29 01:56:45,618 - OpenAIGPTAgent_test1 - INFO - API request successful
+2025-08-29 01:56:51,567 - OpenAIGPTAgent_test1 - INFO - Exported conversation to agents/test1/exports/conversation_20250829_015651.html
+2025-08-29 01:56:56,576 - OpenAIGPTAgent_test1 - INFO - Exported conversation to agents/test1/exports/conversation_20250829_015656.md
