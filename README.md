@@ -1,4 +1,4 @@
-# OpenAI GPT Unified Chat Agent
+# OpenAI GPT-5 Unified Chat Agent
 
 A professional, unified command-line interface for all OpenAI GPT model variants with an enhanced user experience designed to be legendary.
 
